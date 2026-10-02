@@ -1,2 +1,14 @@
-/build
+# Android Studio
 .idea/
+*.iml
+
+# Gradle
+.gradle/
+build/
+
+# Local configuration
+local.properties
+
+# Android generated files
+.externalNativeBuild/
+.cxx/

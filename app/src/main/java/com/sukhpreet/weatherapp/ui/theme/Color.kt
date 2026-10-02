@@ -2,10 +2,12 @@ package com.sukhpreet.weatherapp.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-val Purple80 = Color(0xFFD0BCFF)
-val PurpleGrey80 = Color(0xFFCCC2DC)
-val Pink80 = Color(0xFFEFB8C8)
+val colorPrimary = Color(0xFF546E7A)
 
-val Purple40 = Color(0xFF6650a4)
-val PurpleGrey40 = Color(0xFF625b71)
-val Pink40 = Color(0xFF7D5260)
+val colorSecondary = Color(0xFF90A4AE)
+
+val colorTertiary = Color(0xFFFFB74D)
+
+val colorBackground = Color(0xFFF4F7F8)
+
+val colorSurface = Color(0xFFFFFFFF)

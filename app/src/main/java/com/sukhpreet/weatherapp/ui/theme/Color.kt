@@ -11,3 +11,11 @@ val colorTertiary = Color(0xFFFFB74D)
 val colorBackground = Color(0xFFF4F7F8)
 
 val colorSurface = Color(0xFFFFFFFF)
+
+val themedColor = Color(0xFFB0BEC5)
+
+val themedColor2 = Color(0xFFFFCC80)
+
+val themedColor3 = Color(0xFF12181B)
+
+val themedColor4 = Color(0xFF1B2327)

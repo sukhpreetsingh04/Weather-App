@@ -28,7 +28,7 @@ import com.sukhpreet.weatherapp.view.uicomponents.`Segmented-button`
 fun HomeScreen() {
     Scaffold(topBar = {
         TopAppBar(
-            title = { Text("Weather App") },
+            title = { Text("Weather App", color = MaterialTheme.colorScheme.primary) },
             actions = {
                 IconButton(onClick = {}) {
                     Icon(

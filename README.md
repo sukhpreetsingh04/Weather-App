@@ -56,8 +56,9 @@ com.sukhpreet.weatherapp
 │
 ├── view
 │   ├── uicomponents
-│   │
 │   └── Homescreen.kt
+│   └── MainContent.kt
+|   └── WeatherLazyColumn.kt
 │
 ├── viewmodel
 │   └── WeatherViewModel.kt

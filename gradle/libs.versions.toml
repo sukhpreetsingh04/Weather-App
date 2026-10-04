@@ -14,7 +14,6 @@ navigationCompose = "2.10.2"
 lifecycle = "2.11.0"
 
 [libraries]
-androidx-lifecycle-viewmodel-watchossimulatorarm64 = { module = "androidx.lifecycle:lifecycle-viewmodel-watchossimulatorarm64", version.ref = "lifecycleRuntimeKtx" }
 androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigationCompose" }
 androidx-lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycle" }
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }

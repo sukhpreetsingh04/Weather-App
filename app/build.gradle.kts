@@ -1,7 +1,14 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.compose)
 }
+
+val localProperties = Properties()
+localProperties.load(
+    rootProject.file("local.properties").inputStream()
+)
 
 android {
     namespace = "com.sukhpreet.weatherapp"
@@ -21,7 +28,7 @@ android {
         buildConfigField(
             "String",
             "OPENWEATHER_API_KEY",
-            value = "\"${providers.gradleProperty("OPENWEATHER_API_KEY").getOrElse("")}\""
+            "\"${localProperties.getProperty("OPENWEATHER_API_KEY")}\""
         )
     }
 

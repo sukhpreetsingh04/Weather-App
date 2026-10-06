@@ -29,6 +29,7 @@ fun WeatherLazyColumn() {
     val viewModel: WeatherViewModel = viewModel()
     val weatherData by viewModel.weatherData.collectAsState()
     var city by remember { mutableStateOf("") }
+    var isFahrenheit by remember { mutableStateOf(false) }
     val apiKey = BuildConfig.OPENWEATHER_API_KEY
 
     LazyColumn(
@@ -51,7 +52,10 @@ fun WeatherLazyColumn() {
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.spacedBy(12.dp)
                 ) {
-                    `Segmented-button`()
+                    `Segmented-button`(
+                        isFahrenheit = isFahrenheit,
+                        onUnitSelected = { isFahrenheit = it }
+                    )
 
                     Button(
                         onClick = {
@@ -79,7 +83,15 @@ fun WeatherLazyColumn() {
 
                         WeatherInfoCard(
                             label = "Temperature",
-                            value = "${weather.main.temp}°C",
+                            value = buildString {
+                                val temperature = if (isFahrenheit) {
+                                    viewModel.celsiusToFahrenheit(weather.main.temp.toDouble())
+                                } else {
+                                    weather.main.temp.toDouble()
+                                }
+                                append("${"%.1f".format(temperature)}°")
+                                append(if (isFahrenheit) "F" else "C")
+                            },
                             modifier = Modifier.weight(1f)
                         )
                     }

@@ -147,8 +147,5 @@ In particular, it demonstrates:
 
 The core weather functionality is currently implemented.
 
-The project is still under development, with additional improvements and
-features planned as development continues.
-
 # Screenshots
 <img src="docs/showcase/weather-app-dashboard.jpeg" width="300"/>

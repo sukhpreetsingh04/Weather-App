@@ -148,4 +148,7 @@ In particular, it demonstrates:
 The core weather functionality is currently implemented.
 
 # Screenshots
+<p text-align="center">
 <img src="docs/showcase/weather-app-dashboard.jpeg" width="300"/>
+<img src="docs/dark-preview/weather-app-dark-preview.jpeg" width="300"/>
+</p>

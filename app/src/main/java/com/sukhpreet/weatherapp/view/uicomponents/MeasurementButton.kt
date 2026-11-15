@@ -7,17 +7,23 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 
 @Composable
-fun `Segmented-button`(
-    isFahrenheit: Boolean,
+fun MeasurementButton(
+    isImperial: Boolean,
     onUnitSelected: (Boolean) -> Unit
 ) {
-    val options = listOf("F°", "C°")
+    val options = listOf("I", "M")
+
     SingleChoiceSegmentedButtonRow {
         options.forEachIndexed { index, label ->
             SegmentedButton(
-                selected = isFahrenheit == (index == 0),
-                onClick = { onUnitSelected(index == 0) },
-                shape = SegmentedButtonDefaults.itemShape(index = index, count = options.size)
+                selected = isImperial == (index == 0),
+                onClick = {
+                    onUnitSelected(index == 0)
+                },
+                shape = SegmentedButtonDefaults.itemShape(
+                    index = index,
+                    count = options.size
+                )
             ) {
                 Text(label)
             }

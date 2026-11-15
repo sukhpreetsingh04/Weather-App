@@ -33,4 +33,8 @@ class WeatherViewModel : ViewModel() {
     fun celsiusToFahrenheit(celcius: Double): Double {
         return (celcius * 9 / 5) + 32
     }
+
+    fun metricToImperial(metric: Double): Double {
+        return metric * 0.62137144
+    }
 }

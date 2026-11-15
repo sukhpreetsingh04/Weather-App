@@ -20,7 +20,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.sukhpreet.weatherapp.BuildConfig
-import com.sukhpreet.weatherapp.view.uicomponents.`Segmented-button`
+import com.sukhpreet.weatherapp.view.uicomponents.MeasurementButton
 import com.sukhpreet.weatherapp.view.uicomponents.WeatherInfoCard
 import com.sukhpreet.weatherapp.viewmodel.WeatherViewModel
 
@@ -29,7 +29,7 @@ fun WeatherLazyColumn() {
     val viewModel: WeatherViewModel = viewModel()
     val weatherData by viewModel.weatherData.collectAsState()
     var city by remember { mutableStateOf("") }
-    var isFahrenheit by remember { mutableStateOf(false) }
+    var isImperial by remember { mutableStateOf(false) }
     val apiKey = BuildConfig.OPENWEATHER_API_KEY
 
     LazyColumn(
@@ -52,9 +52,11 @@ fun WeatherLazyColumn() {
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.spacedBy(12.dp)
                 ) {
-                    `Segmented-button`(
-                        isFahrenheit = isFahrenheit,
-                        onUnitSelected = { isFahrenheit = it }
+                    MeasurementButton(
+                        isImperial = isImperial,
+                        onUnitSelected = {
+                            isImperial = it
+                        }
                     )
 
                     Button(
@@ -80,22 +82,21 @@ fun WeatherLazyColumn() {
                             value = weather.name,
                             modifier = Modifier.weight(1f)
                         )
-
                         WeatherInfoCard(
                             label = "Temperature",
                             value = buildString {
-                                val temperature = if (isFahrenheit) {
-                                    viewModel.celsiusToFahrenheit(weather.main.temp.toDouble())
+                                val temperature = if (isImperial) {
+                                    viewModel.celsiusToFahrenheit(
+                                        weather.main.temp.toDouble()
+                                    )
                                 } else {
                                     weather.main.temp.toDouble()
                                 }
-                                append("${"%.1f".format(temperature)}°")
-                                append(if (isFahrenheit) "F" else "C")
+                                append("${"%.1f".format(temperature)}°${if (isImperial) "F" else "C"}")
                             },
                             modifier = Modifier.weight(1f)
                         )
                     }
-
                     Row(
                         modifier = Modifier.fillMaxWidth(),
                         horizontalArrangement = Arrangement.spacedBy(12.dp)
@@ -105,10 +106,32 @@ fun WeatherLazyColumn() {
                             value = "${weather.main.humidity}%",
                             modifier = Modifier.weight(1f)
                         )
-
                         WeatherInfoCard(
                             label = "Description",
                             value = weather.weather[0].description,
+                            modifier = Modifier.weight(1f)
+                        )
+                    }
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.spacedBy(12.dp)
+                    ) {
+                        WeatherInfoCard(
+                            label = "Feels Like",
+                            value = "%.1f°C".format(weather.main.feelsLike),
+                            modifier = Modifier.weight(1f)
+                        )
+                        WeatherInfoCard(
+                            label = "Visibility",
+                            value = buildString {
+                                val rawVisibility = weather.visibility / 1000.0
+                                val convertedVisibility = if (isImperial) {
+                                    viewModel.metricToImperial(rawVisibility)
+                                } else {
+                                    rawVisibility
+                                }
+                                append("${"%.1f".format(convertedVisibility)} ${if (isImperial) "mi" else "km"}")
+                            },
                             modifier = Modifier.weight(1f)
                         )
                     }
